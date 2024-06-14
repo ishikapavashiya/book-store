@@ -27,7 +27,7 @@ app.get("/", (req, res) => {
     res.render("index");
   });
   
-app.set("view engine", "ejs");
+// app.set("view engine", "ejs");
 
 http.createServer(app).listen(process.env.PORT, () => {
     console.log(`server strated ${process.env.PORT}`);
