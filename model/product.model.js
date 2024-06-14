@@ -1,14 +1,31 @@
-let mongoose = require("mongoose");
-let productSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-  },
-  price: {
-    type: Number,
-    required: true,
-  },
-});
+mongoose = require("mongoose");
 
-let product = mongoose.model("productSchema", productSchema);
-module.exports = product;
+let bookSchema = new mongoose.Schema({
+    title:{
+        type:String,
+        require:true,
+    },
+    price:{
+        type: Number,
+        require:true,
+    },
+    author: {
+        type: String,
+        require: true
+      },
+      pages: {
+        type: Number,
+        require: true
+      },
+      publishedDate: {
+        type: Date,
+        require: true
+      },
+      language:{
+        type:String,
+        require:true,
+      },
+
+});
+let book = mongoose.model("book", bookSchema)
+module.exports=book;

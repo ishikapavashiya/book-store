@@ -11,7 +11,7 @@ let orderSchema = new mongoose.Schema({
   },
   date: {
     type: String,
-    required: true,
+    require: true,
   },
 });
 

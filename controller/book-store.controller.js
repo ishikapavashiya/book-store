@@ -1,3 +1,4 @@
+const { createtoken } = require("../middleware/auth");
 const { bookservice } = require("../service")
 const sendEmail = require("../service/email.service");
 
@@ -11,15 +12,15 @@ let register = async (req, res) => {
         console.log(book);
         //email service
 
-    // if (user) {
-    //   let result = await sendEmail(
-    //     user.email,
-    //     "this is test mail",
-    //     `welcome ${user.email}`
-    //   );
-    //   console.log(result);
-    // }
-    // console.log(user, "res");
+        // if (user) {
+        //   let result = await sendEmail(
+        //     user.email,
+        //     "this is test mail",
+        //     `welcome ${user.email}`
+        //   );
+        //   console.log(result);
+        // }
+        // console.log(user, "res");
         res.status(201).json({
             message: "book regiter sucessfully",
             book,
@@ -75,13 +76,20 @@ let login = async (req, res) => {
         console.log(user, "result");
 
         if (!user) {
-            throw new error("user not found!");
+            throw new Error("user not found!");
         }
         if (user.password != password) {
-            throw new error("password invlid");
+            throw new Error("password invlid");
         }
+
+        let token = createtoken({ user });
+        console.log(token);
+
+        res.cookie("token", token);
+
         res.status(200).json({
-            message: "loginsucessfully", user,
+            message: "login sucessfully",
+            token,
         });
     } catch (err) {
         res.status(500).json({
@@ -89,4 +97,18 @@ let login = async (req, res) => {
         });
     }
 };
-module.exports = { register, getAlluser, deleteuser, updateUser, login,sendEmail };
+
+let getprofile = async (req, res) => {
+    let user = req.user;
+    res.status(200).json({
+        message: "profile get success", user,
+    });
+};
+let Profile = async (req, res) => {
+    let user = req.user;
+    res.status(200).json({
+      message: "profile get success",
+      user,
+    });
+  };
+module.exports = { register, getAlluser, deleteuser, updateUser, login, Profile };

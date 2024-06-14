@@ -1,31 +1,19 @@
+
 let mongoose = require("mongoose");
 
-let bookSchema = new mongoose.Schema({
-    title:{
+let loginSchema = new mongoose.Schema({
+    username:{
         type:String,
         require:true,
     },
-    price:{
-        type: Number,
-        require:true,
-    },
-    author: {
-        type: String,
-        required: true
-      },
-      pages: {
-        type: Number,
-        required: true
-      },
-      publishedDate: {
-        type: Date,
-        required: true
-      },
-      language:{
+    email:{
         type:String,
         require:true,
-      },
-
-});
-let book = mongoose.model("book", bookSchema)
-module.exports=book;
+    },
+    password:{
+        type:Number,
+        require:true,
+    },
+})
+let login = mongoose.model("login",loginSchema);
+module.exports = login;
