@@ -13,4 +13,4 @@ route.put("/updata/:id", validate(bookvalidation.user), bookcontroller.updateUse
 
 route.post("/login", validate(bookvalidation.user), bookcontroller.login);
 route.get("/profile",bookcontroller.Profile)
-module.exports = route;
+module.exports = route; 
