@@ -4,12 +4,15 @@ const sendEmail = require("../service/email.service");
 
 let register = async (req, res) => {
     try {
-        console.log(req.body);
-
         let body = req.body;
+        console.log(body,"res");
 
         let book = await bookservice.register(body);
-        console.log(book);
+        res.status(201).json({
+            message: "book regiter sucessfully",
+            book,
+        });
+       
         //email service
 
         // if (user) {
@@ -21,10 +24,7 @@ let register = async (req, res) => {
         //   console.log(result);
         // }
         // console.log(user, "res");
-        res.status(201).json({
-            message: "book regiter sucessfully",
-            book,
-        });
+       
     }
     catch (err) {
         res.status(500).json({
@@ -34,6 +34,7 @@ let register = async (req, res) => {
 }
 // get
 let getAlluser = async (req, res) => {
+    console.log(req.body);
     let users = await bookservice.findAlluser();
     res.status(200).json({
         message: "get All user sucess",
@@ -89,7 +90,6 @@ let login = async (req, res) => {
 
         res.status(200).json({
             message: "login sucessfully",
-            token,
         });
     } catch (err) {
         res.status(500).json({
@@ -98,12 +98,6 @@ let login = async (req, res) => {
     }
 };
 
-let getprofile = async (req, res) => {
-    let user = req.user;
-    res.status(200).json({
-        message: "profile get success", user,
-    });
-};
 let Profile = async (req, res) => {
     let user = req.user;
     res.status(200).json({

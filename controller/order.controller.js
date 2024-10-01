@@ -14,7 +14,9 @@ let createorder=async(req,res)=>{
 };
 
 let getordre = async(req,res)=>{
-    let order = await orderservice.getordre();
+
+    console.log(req.body);
+    let order = await orderservice.getordre(body);
 
 
     res.status(200).json({
